@@ -194,6 +194,12 @@
     var list = document.createElement('div');
     list.className = 'wga-list';
 
+    list.addEventListener('mouseleave', function () {
+      list.querySelectorAll('.wga-item.wga-active').forEach(function (r) {
+        r.classList.remove('wga-active');
+      });
+    });
+
     items.forEach(function (item) {
       var row = document.createElement('a');
       row.className = 'wga-item';
