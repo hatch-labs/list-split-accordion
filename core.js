@@ -212,6 +212,9 @@
         '<div class="wga-item-btn" aria-hidden="true">' + item.btnChar + '</div>';
 
       row.addEventListener('mouseenter', function () {
+        list.querySelectorAll('.wga-item.wga-active').forEach(function (r) {
+          r.classList.remove('wga-active');
+        });
         updateImage(item);
       });
 
