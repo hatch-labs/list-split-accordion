@@ -257,16 +257,20 @@
     container.appendChild(wrapper);
 
     /* ── Open first item if --lsa-open-first is 1 ── */
-    var openFirst = getComputedStyle(document.documentElement)
-                      .getPropertyValue('--lsa-open-first').trim();
+    /* Deferred to next frame so the DOM is fully painted and
+       CSS variables are resolved before we read them.        */
+    requestAnimationFrame(function () {
+      var openFirst = getComputedStyle(document.documentElement)
+                        .getPropertyValue('--lsa-open-first').trim();
 
-    if (openFirst === '1') {
-      var firstRow = list.querySelector('.wga-item');
-      if (firstRow) {
-        firstRow.classList.add('wga-active');
-        updateImage(items[0]);
+      if (openFirst === '1') {
+        var firstRow = list.querySelector('.wga-item');
+        if (firstRow) {
+          firstRow.classList.add('wga-active');
+          updateImage(items[0]);
+        }
       }
-    }
+    });
   }
 
   /* ── Init ─────────────────────────────────────────────────── */
