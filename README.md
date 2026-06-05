@@ -37,7 +37,7 @@ Do this once per site.
 1. Add a **List** section to your page
 2. In the List section settings, set the display type to **Simple List**
 3. Turn off the **section header** and **section button** — these are not used by this component
-4. Add your items — each item needs a **title**, **description**, and **image**. The item button is optional and will render as the arrow on each row if a link is provided.
+4. Add your items — each item needs a **title**, **description**, and **image**. The item button is optional and will render as the row arrow if a link is provided.
 5. Open the section settings and set the **Section ID** to:
 ```
 list-split-accordion
@@ -49,13 +49,35 @@ The component activates automatically on page load.
 
 ## Customisation
 
-Add any of these variables to **Design > Custom CSS** to override the defaults. You only need to include the ones you want to change.
+There are two types of variables — **visual** and **behaviour**.
+
+### Visual variables
+
+Visual variables control colours, fonts, and layout. Add these to **Design > Custom CSS**:
 
 ```css
 :root {
-  /* your overrides here */
+  --lsa-accent: #000000;
+  --lsa-prehead: "ITEM ";
+  /* add any others here */
 }
 ```
+
+### Behaviour variables
+
+Behaviour variables are read by JavaScript and must go in **Settings > Advanced > Code Injection > Header** inside a `<style>` tag:
+
+```html
+<style>
+  :root {
+    --lsa-open-first: 1;
+  }
+</style>
+```
+
+---
+
+## Variable reference
 
 ### Layout
 
@@ -102,7 +124,9 @@ Add any of these variables to **Design > Custom CSS** to override the defaults. 
 | `--lsa-prehead-font-size` | `10px` | Prehead font size |
 | `--lsa-bg-num-font-weight` | `200` | Large background number font weight |
 
-### Behaviour
+### Behaviour ⚠️ Code Injection only
+
+These variables are read by JavaScript. They must go in **Code Injection > Header** inside a `<style>` tag — not in Custom CSS.
 
 | Variable | Default | Description |
 |---|---|---|
@@ -114,13 +138,22 @@ Add any of these variables to **Design > Custom CSS** to override the defaults. 
 
 ## Example client configuration
 
+**Design > Custom CSS:**
 ```css
 :root {
   --lsa-accent: #2d4a3e;
   --lsa-prehead: "SERVICE ";
   --lsa-direction: row-reverse;
-  --lsa-open-first: 1;
 }
+```
+
+**Code Injection > Header:**
+```html
+<style>
+  :root {
+    --lsa-open-first: 1;
+  }
+</style>
 ```
 
 ---
